@@ -1,6 +1,6 @@
 {
   "name": "feature-lifecycle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "File-based Feature Lifecycle Tracker — unified status by aggregating BMAD, SpecKit, Agreement, ADR, and Mermaid artifacts",
   "type": "module",
   "bin": {
