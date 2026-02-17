@@ -1,0 +1,69 @@
+feature_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────
+feature_id: "{{feature_id}}"
+title: "{{title}}"
+status: "active"
+owner: "{{owner}}"
+created: "{{date}}"
+updated: "{{date}}"
+
+# ── Dependencies ──────────────────────────────────────
+depends_on: []
+tags: []
+
+# ── Lifecycle (computed) ──────────────────────────────
+lifecycle:
+  stage: "ideation"
+  stage_since: "{{date}}"
+  progress: 0.0
+  manual_override: null
+
+# ── Artifacts (computed from scan) ────────────────────
+artifacts:
+  bmad:
+    prd: false
+    architecture: false
+    epics: false
+  speckit:
+    spec: false
+    plan: false
+    research: false
+    tasks: false
+    contracts: false
+    tasks_done: 0
+    tasks_total: 0
+  agreement:
+    exists: false
+    status: ""
+    check: "MISSING"
+  adr:
+    count: 0
+    ids: []
+  mermaid:
+    count: 0
+    layers:
+      L0: 0
+      L1: 0
+      L2: 0
+
+# ── Health (computed) ─────────────────────────────────
+health:
+  overall: "HEALTHY"
+  agreement: "MISSING"
+  spec_completeness: 0.0
+  task_progress: 0.0
+  adr_coverage: 0
+  diagram_coverage: 0
+  warnings: []
+
+# ── Regression Detection ─────────────────────────────
+last_scan:
+  timestamp: "{{timestamp}}"
+  stage: "ideation"
+  artifacts_snapshot:
+    bmad_prd: false
+    speckit_spec: false
+    speckit_plan: false
+    speckit_tasks: false
+    agreement_exists: false

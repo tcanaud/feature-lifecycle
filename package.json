@@ -1,0 +1,25 @@
+{
+  "name": "feature-lifecycle",
+  "version": "1.0.0",
+  "description": "File-based Feature Lifecycle Tracker — unified status by aggregating BMAD, SpecKit, Agreement, ADR, and Mermaid artifacts",
+  "type": "module",
+  "bin": {
+    "feature-lifecycle": "bin/cli.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/"
+  ],
+  "keywords": [
+    "feature",
+    "lifecycle",
+    "tracker",
+    "bmad",
+    "speckit"
+  ],
+  "license": "MIT"
+}

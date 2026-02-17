@@ -1,0 +1,24 @@
+# Feature Lifecycle Tracker — PM Agent Extension
+# Adds lifecycle awareness menu items to the PM agent
+
+additional_menu_items:
+  - label: "Check feature status"
+    description: "View detailed lifecycle status of a feature including artifacts, stage, and health"
+    command: "/feature.status"
+    context: "Use when you need to understand the current state of a feature across all systems"
+
+  - label: "View feature dashboard"
+    description: "See all features at a glance with stage, progress, and health indicators"
+    command: "/feature.list"
+    context: "Use for sprint planning or status reviews to see all features side by side"
+
+additional_context: |
+  The Feature Lifecycle Tracker provides unified feature visibility across the ecosystem:
+  - BMAD artifacts (PRD, architecture, epics)
+  - SpecKit artifacts (spec, plan, tasks, contracts)
+  - Agreement status (exists, check PASS/FAIL)
+  - ADR coverage (decisions referencing this feature)
+  - Mermaid diagrams (L0/L1/L2 coverage)
+
+  Lifecycle stages: ideation → spec → plan → tasks → implement → test → release
+  Stages are automatically computed from artifact presence.
