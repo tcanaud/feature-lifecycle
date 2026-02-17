@@ -42,7 +42,7 @@ export function generateDependencyGraph(features) {
     const title = f.title || f.feature_id;
     const stage = f.lifecycle?.stage || f.stage || "ideation";
     const progress = Math.round((f.lifecycle?.progress || f.progress || 0) * 100);
-    lines.push(`  ${id}["${title}<br/>${stage} ${progress}%"]`);
+    lines.push(`  ${id}["${title}<br>${stage} ${progress}%"]`);
   }
 
   lines.push("");
@@ -85,6 +85,6 @@ export function generateDependencyGraph(features) {
 }
 
 function sanitizeId(id) {
-  // Replace hyphens and special chars with underscores for Mermaid compatibility
-  return id.replace(/[^a-zA-Z0-9]/g, "_");
+  // Replace hyphens and special chars with underscores, prefix with 'f' so ID never starts with a digit
+  return "f_" + id.replace(/[^a-zA-Z0-9]/g, "_");
 }

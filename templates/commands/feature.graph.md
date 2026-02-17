@@ -43,7 +43,21 @@ Write the Mermaid diagram to `.bmad_output/mermaid/000-feature-lifecycle/L0-depe
 - Include YAML frontmatter (id, title, type, layer, feature)
 - Write the Mermaid flowchart body
 
-Create/update `_index.yaml` in the same directory with the diagram entry.
+Create/update `_index.yaml` in the same directory. **Important**: use the Mermaid Workbench `_index.yaml` format with diagrams grouped by layer:
+
+```yaml
+feature: 000-feature-lifecycle
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+diagrams:
+  L0:
+    - id: dependency-graph
+      file: L0-dependency-graph.mmd
+      type: flowchart
+      title: Feature Dependencies
+```
+
+Do NOT use a flat array format — the Mermaid Viewer expects `diagrams.L0`, `diagrams.L1`, `diagrams.L2` keys.
 
 ### 6. Display inline
 
