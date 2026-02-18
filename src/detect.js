@@ -16,6 +16,15 @@ function getGitUserName() {
   }
 }
 
+function hasCommand(cmd) {
+  try {
+    execSync(`command -v ${cmd}`, { encoding: "utf-8", stdio: "pipe" });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function detect(projectRoot) {
   const bmadDir = detectBmadDir(projectRoot);
   const hasBmad = bmadDir !== null;
@@ -24,6 +33,9 @@ export function detect(projectRoot) {
   const hasAdr = existsSync(join(projectRoot, ".adr"));
   const hasClaudeCommands = existsSync(join(projectRoot, ".claude", "commands"));
   const hasMermaid = existsSync(join(projectRoot, ".bmad_output", "mermaid"));
+  const hasQa = existsSync(join(projectRoot, ".qa"));
+  const hasProduct = existsSync(join(projectRoot, ".product"));
+  const hasGhCli = hasCommand("gh");
   const gitUserName = getGitUserName();
 
   return {
@@ -34,6 +46,9 @@ export function detect(projectRoot) {
     hasAdr,
     hasClaudeCommands,
     hasMermaid,
+    hasQa,
+    hasProduct,
+    hasGhCli,
     gitUserName,
   };
 }

@@ -45,6 +45,9 @@ export function update(flags = []) {
     ["commands/feature.list.md", ".claude/commands/feature.list.md"],
     ["commands/feature.graph.md", ".claude/commands/feature.graph.md"],
     ["commands/feature.discover.md", ".claude/commands/feature.discover.md"],
+    ["commands/feature.workflow.md", ".claude/commands/feature.workflow.md"],
+    ["commands/feature.pr.md", ".claude/commands/feature.pr.md"],
+    ["commands/feature.resolve.md", ".claude/commands/feature.resolve.md"],
   ];
 
   for (const [src, dest] of commandMappings) {

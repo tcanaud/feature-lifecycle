@@ -31,18 +31,21 @@ export async function install(flags = []) {
   const skipBmad = flags.includes("--skip-bmad");
   const autoYes = flags.includes("--yes");
 
-  console.log("\n  feature-lifecycle v1.0.0\n");
+  console.log("\n  feature-lifecycle v1.1.0\n");
 
   // ── Detect environment ──────────────────────────────
   const env = detect(projectRoot);
 
   console.log("  Environment detected:");
-  console.log(`    BMAD:           ${env.hasBmad ? `yes (${env.bmadDir}/)` : "no"}`);
-  console.log(`    Spec Kit:       ${env.hasSpeckit ? "yes" : "no"}`);
-  console.log(`    Agreements:     ${env.hasAgreements ? "yes" : "no"}`);
-  console.log(`    ADR:            ${env.hasAdr ? "yes" : "no"}`);
+  console.log(`    BMAD:            ${env.hasBmad ? `yes (${env.bmadDir}/)` : "no"}`);
+  console.log(`    Spec Kit:        ${env.hasSpeckit ? "yes" : "no"}`);
+  console.log(`    Agreements:      ${env.hasAgreements ? "yes" : "no"}`);
+  console.log(`    ADR:             ${env.hasAdr ? "yes" : "no"}`);
   console.log(`    Claude commands: ${env.hasClaudeCommands ? "yes" : "no"}`);
-  console.log(`    Mermaid:        ${env.hasMermaid ? "yes" : "no"}`);
+  console.log(`    Mermaid:         ${env.hasMermaid ? "yes" : "no"}`);
+  console.log(`    QA System:       ${env.hasQa ? "yes" : "no"}`);
+  console.log(`    Product Manager: ${env.hasProduct ? "yes" : "no"}`);
+  console.log(`    GitHub CLI:      ${env.hasGhCli ? "yes" : "no"}`);
   console.log();
 
   const featuresDir = join(projectRoot, ".features");
@@ -107,6 +110,9 @@ export async function install(flags = []) {
     ["commands/feature.list.md", ".claude/commands/feature.list.md"],
     ["commands/feature.graph.md", ".claude/commands/feature.graph.md"],
     ["commands/feature.discover.md", ".claude/commands/feature.discover.md"],
+    ["commands/feature.workflow.md", ".claude/commands/feature.workflow.md"],
+    ["commands/feature.pr.md", ".claude/commands/feature.pr.md"],
+    ["commands/feature.resolve.md", ".claude/commands/feature.resolve.md"],
   ];
 
   for (const [src, dest] of commandMappings) {
@@ -162,5 +168,8 @@ export async function install(flags = []) {
   console.log("    /feature.list           Dashboard of all features");
   console.log("    /feature.graph          Dependency visualization");
   console.log("    /feature.discover       Auto-register existing features");
+  console.log("    /feature.workflow <id>  Guided workflow playbook");
+  console.log("    /feature.pr <id>        Create PR with governance traceability");
+  console.log("    /feature.resolve <id>   Post-merge lifecycle resolution");
   console.log();
 }
