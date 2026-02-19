@@ -1,6 +1,6 @@
 {
   "name": "feature-lifecycle",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "File-based Feature Lifecycle Tracker — unified status with QA integration, traceable PR creation, and post-merge lifecycle resolution",
   "type": "module",
   "bin": {
