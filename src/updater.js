@@ -1,6 +1,7 @@
 import { existsSync, copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { mergeYAML } from "../../tcsetup/src/yaml-merge.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TEMPLATES = join(__dirname, "..", "templates");
@@ -73,18 +74,15 @@ export function update(flags = []) {
         if (existsSync(destPath)) {
           const existing = readFileSync(destPath, "utf-8");
           const snippet = readFileSync(srcPath, "utf-8");
-          // Remove old feature-lifecycle block and re-append fresh version
-          const marker = "# Feature Lifecycle Tracker";
-          const markerIndex = existing.indexOf(marker);
-          if (markerIndex >= 0) {
-            // Replace from marker to end with fresh snippet
-            const before = existing.substring(0, markerIndex).trimEnd();
-            writeFileSync(destPath, before + "\n\n" + snippet);
-            console.log(`    update ${bmadDir}/_config/agents/bmm-pm.customize.yaml (replaced section)`);
+
+          // Use intelligent YAML merge instead of text-based replacement
+          const mergeResult = mergeYAML(existing, snippet);
+
+          if (mergeResult.success) {
+            writeFileSync(destPath, mergeResult.toYAML());
+            console.log(`    update ${bmadDir}/_config/agents/bmm-pm.customize.yaml (merged configuration)`);
           } else {
-            // Not present yet — append
-            writeFileSync(destPath, existing.trimEnd() + "\n\n" + snippet);
-            console.log(`    append ${bmadDir}/_config/agents/bmm-pm.customize.yaml`);
+            console.error(`    Error merging bmm-pm.customize.yaml: ${mergeResult.errors.join(", ")}`);
           }
         } else {
           copyTemplate(srcPath, destPath);
